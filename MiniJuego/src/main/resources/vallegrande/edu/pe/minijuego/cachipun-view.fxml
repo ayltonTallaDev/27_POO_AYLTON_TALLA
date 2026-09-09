@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
+
+<VBox alignment="CENTER" spacing="22" style="-fx-background-color: #f4f6fb;"
+      xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1"
+      fx:controller="vallegrande.edu.pe.minijuego.CachipunController">
+    <padding>
+        <Insets top="30" right="30" bottom="30" left="30"/>
+    </padding>
+
+    <Label text="Cachipún: Piedra, Papel o Tijera" style="-fx-font-size: 22px; -fx-text-fill: #22223b; -fx-font-weight: bold;"/>
+
+    <HBox alignment="CENTER" spacing="50">
+        <VBox alignment="CENTER" spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-padding: 16 24; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+            <Label text="TÚ" style="-fx-text-fill: #4361ee; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+            <Label fx:id="lblJugador" text="?" style="-fx-font-size: 30px; -fx-text-fill: #22223b; -fx-font-weight: bold;"/>
+        </VBox>
+        <VBox alignment="CENTER" spacing="8" style="-fx-background-color: white; -fx-background-radius: 14; -fx-padding: 16 24; -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.08), 8, 0, 0, 2);">
+            <Label text="PC" style="-fx-text-fill: #f77f00; -fx-font-size: 13px; -fx-font-weight: bold;"/>
+            <Label fx:id="lblPC" text="?" style="-fx-font-size: 30px; -fx-text-fill: #22223b; -fx-font-weight: bold;"/>
+        </VBox>
+    </HBox>
+
+    <Label fx:id="lblResultado" text="Elige tu jugada" style="-fx-font-size: 16px; -fx-text-fill: #4a4e69;"/>
+
+    <HBox alignment="CENTER" spacing="15">
+        <Button fx:id="btnPiedra" text="Piedra" onAction="#jugarPiedra"
+                style="-fx-font-size: 14px; -fx-min-width: 100px; -fx-padding: 10 0; -fx-background-color: #4361ee; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;"/>
+        <Button fx:id="btnPapel" text="Papel" onAction="#jugarPapel"
+                style="-fx-font-size: 14px; -fx-min-width: 100px; -fx-padding: 10 0; -fx-background-color: #4361ee; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;"/>
+        <Button fx:id="btnTijera" text="Tijera" onAction="#jugarTijera"
+                style="-fx-font-size: 14px; -fx-min-width: 100px; -fx-padding: 10 0; -fx-background-color: #4361ee; -fx-text-fill: white; -fx-background-radius: 8; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <HBox alignment="CENTER" spacing="40">
+        <Label fx:id="lblPuntosJugador" text="Tú: 0" style="-fx-text-fill: #4361ee; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+        <Label fx:id="lblPuntosPC" text="PC: 0" style="-fx-text-fill: #f77f00; -fx-font-size: 15px; -fx-font-weight: bold;"/>
+    </HBox>
+
+    <Button text="Reiniciar" onAction="#reiniciar"
+            style="-fx-font-size: 12px; -fx-background-color: transparent; -fx-text-fill: #d90429; -fx-border-color: #d90429; -fx-border-radius: 6; -fx-background-radius: 6; -fx-padding: 6 18;"/>
+</VBox>
