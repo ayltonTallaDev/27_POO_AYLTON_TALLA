@@ -216,4 +216,111 @@ public class SocioDAO {
     }
 
 
+
+    // ==========================
+    // ACTUALIZAR SOCIO
+    // ==========================
+
+    public boolean actualizar(Socio socio) {
+
+        String sql = "UPDATE socios SET " +
+                "dni=?, nombres=?, apellidos=?, fecha_nacimiento=?, sexo=?, " +
+                "telefono=?, direccion=?, comunidad=?, fecha_ingreso=?, estado=? " +
+                "WHERE id_socio=?";
+
+
+        try (
+                Connection conn = Conexion.conectar();
+                PreparedStatement stmt = conn.prepareStatement(sql)
+        ) {
+
+
+            stmt.setString(1, socio.getDni());
+
+            stmt.setString(2, socio.getNombres());
+
+            stmt.setString(3, socio.getApellidos());
+
+
+            stmt.setDate(4,
+                    java.sql.Date.valueOf(
+                            socio.getFechaNacimiento()
+                    )
+            );
+
+
+            stmt.setString(5, socio.getSexo());
+
+            stmt.setString(6, socio.getTelefono());
+
+            stmt.setString(7, socio.getDireccion());
+
+            stmt.setString(8, socio.getComunidad());
+
+
+            stmt.setDate(9,
+                    java.sql.Date.valueOf(
+                            socio.getFechaIngreso()
+                    )
+            );
+
+
+            stmt.setString(10, socio.getEstado());
+
+
+            stmt.setInt(11, socio.getIdSocio());
+
+
+            int filas = stmt.executeUpdate();
+
+
+            return filas > 0;
+
+
+        } catch(SQLException e){
+
+            System.out.println("ERROR AL ACTUALIZAR SOCIO:");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            return false;
+        }
+
+    }
+
+
+
+    // ==========================
+    // ELIMINAR SOCIO
+    // ==========================
+
+    public boolean eliminar(int idSocio){
+
+        String sql = "DELETE FROM socios WHERE id_socio=?";
+
+
+        try(
+                Connection conn = Conexion.conectar();
+                PreparedStatement stmt = conn.prepareStatement(sql)
+        ){
+
+            stmt.setInt(1, idSocio);
+
+
+            int filas = stmt.executeUpdate();
+
+
+            return filas > 0;
+
+
+        }catch(SQLException e){
+
+            System.out.println("ERROR AL ELIMINAR SOCIO:");
+            System.out.println(e.getMessage());
+            e.printStackTrace();
+
+            return false;
+        }
+
+    }
 }

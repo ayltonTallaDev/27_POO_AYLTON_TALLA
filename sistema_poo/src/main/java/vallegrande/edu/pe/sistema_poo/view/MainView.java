@@ -1,7 +1,9 @@
 package vallegrande.edu.pe.sistema_poo.view;
 
+
 import java.time.LocalDate;
 import java.util.List;
+
 
 import javafx.collections.FXCollections;
 import javafx.geometry.Insets;
@@ -13,21 +15,37 @@ import javafx.scene.control.TableView;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.VBox;
+import javafx.scene.layout.HBox;
+
 
 import vallegrande.edu.pe.sistema_poo.model.Socio;
+
 
 
 public class MainView extends BorderPane {
 
 
+
     private Button btnInicio;
+
     private Button btnSocios;
+
     private Button btnNuevoSocio;
+
+    private Button btnActualizar;
+
+    private Button btnEliminar;
+
+
 
     private TableView<Socio> tablaSocios;
 
 
-    public MainView() {
+
+
+
+    public MainView(){
+
 
         crearMenu();
 
@@ -35,27 +53,37 @@ public class MainView extends BorderPane {
 
         mostrarInicio();
 
+
     }
 
 
 
+
+
+
     // ==========================
-    // CREAR MENÚ LATERAL
+    // CREAR MENU LATERAL
     // ==========================
 
-    private void crearMenu() {
+
+    private void crearMenu(){
 
 
         VBox menu = new VBox(15);
 
+
         menu.setPadding(new Insets(25));
 
+
         menu.setPrefWidth(220);
+
+
 
 
         Label titulo = new Label(
                 "COOPERATIVA\nRÍO TAMBO"
         );
+
 
 
         titulo.setStyle(
@@ -65,60 +93,90 @@ public class MainView extends BorderPane {
         );
 
 
+
+
         btnInicio = crearBoton("Inicio");
 
+
         btnSocios = crearBoton("Socios");
+
+
 
         btnNuevoSocio = crearBoton("Nuevo Socio");
 
 
-        btnNuevoSocio.setOnAction(e -> {
+        btnActualizar = crearBoton("Actualizar");
 
-            SocioForm formulario = new SocioForm();
 
-            formulario.mostrar();
+        btnEliminar = crearBoton("Eliminar");
 
-        });
+
+
+
 
         menu.getChildren().addAll(
+
                 titulo,
+
                 btnInicio,
-                btnSocios,
-                btnNuevoSocio
+
+                btnSocios
+
         );
+
 
 
         menu.setStyle(
+
                 "-fx-background-color: #166534;"
+
         );
+
 
 
         setLeft(menu);
 
+
     }
 
 
 
-    private Button crearBoton(String texto) {
+
+
+
+
+    private Button crearBoton(String texto){
 
 
         Button boton = new Button(texto);
 
+
         boton.setPrefWidth(170);
+
 
         boton.setPrefHeight(40);
 
+
+
         return boton;
+
 
     }
 
 
 
+
+
+
+
+
     // ==========================
-    // PANTALLA INICIO
+    // INICIO
     // ==========================
 
-    public void mostrarInicio() {
+
+    public void mostrarInicio(){
+
 
 
         VBox contenido = new VBox(10);
@@ -141,22 +199,34 @@ public class MainView extends BorderPane {
 
 
         Label texto = new Label(
+
                 "Sistema de gestión de socios\n" +
                         "Cooperativa Agraria Cafetalera Río Tambo"
+
         );
 
 
 
         contenido.getChildren().addAll(
+
                 titulo,
+
                 texto
+
         );
 
 
 
         setCenter(contenido);
 
+
+
     }
+
+
+
+
+
 
 
 
@@ -164,96 +234,154 @@ public class MainView extends BorderPane {
     // PANTALLA SOCIOS
     // ==========================
 
-    public void mostrarSocios() {
+
+    public void mostrarSocios(){
 
 
         VBox contenido = new VBox(20);
 
 
+
         contenido.setPadding(
+
                 new Insets(30)
+
         );
 
 
 
         Label titulo = new Label(
+
                 "SOCIOS"
+
         );
+
 
 
         titulo.setStyle(
+
                 "-fx-font-size: 26px;" +
                         "-fx-font-weight: bold;"
+
         );
+
+
+
+
+
+
+        HBox botones = new HBox(15);
+
+
+        botones.setAlignment(
+
+                Pos.CENTER_LEFT
+
+        );
+
+
+
+        botones.getChildren().addAll(
+
+                btnNuevoSocio,
+
+                btnActualizar,
+
+                btnEliminar
+
+        );
+
+
+
 
 
 
         contenido.getChildren().addAll(
+
                 titulo,
+
+                botones,
+
                 tablaSocios
+
         );
 
 
 
         setCenter(contenido);
 
+
+
     }
 
 
 
 
+
+
+
+
+
+
     // ==========================
-    // CREAR TABLA SOCIOS
+    // CREAR TABLA
     // ==========================
 
-    private void crearTabla() {
+
+    private void crearTabla(){
+
 
 
         tablaSocios = new TableView<>();
 
 
-        TableColumn<Socio, Integer> colId =
+
+
+        TableColumn<Socio,Integer> colId =
                 new TableColumn<>("ID");
 
 
-        TableColumn<Socio, String> colDni =
+        TableColumn<Socio,String> colDni =
                 new TableColumn<>("DNI");
 
 
-        TableColumn<Socio, String> colNombres =
+        TableColumn<Socio,String> colNombres =
                 new TableColumn<>("Nombres");
 
 
-        TableColumn<Socio, String> colApellidos =
+        TableColumn<Socio,String> colApellidos =
                 new TableColumn<>("Apellidos");
 
 
-        TableColumn<Socio, LocalDate> colFechaNacimiento =
+        TableColumn<Socio,LocalDate> colFechaNacimiento =
                 new TableColumn<>("Fecha Nacimiento");
 
 
-        TableColumn<Socio, String> colSexo =
+        TableColumn<Socio,String> colSexo =
                 new TableColumn<>("Sexo");
 
 
-        TableColumn<Socio, String> colTelefono =
+        TableColumn<Socio,String> colTelefono =
                 new TableColumn<>("Teléfono");
 
 
-        TableColumn<Socio, String> colDireccion =
+        TableColumn<Socio,String> colDireccion =
                 new TableColumn<>("Dirección");
 
 
-        TableColumn<Socio, String> colComunidad =
+        TableColumn<Socio,String> colComunidad =
                 new TableColumn<>("Comunidad");
 
 
-        TableColumn<Socio, LocalDate> colFechaIngreso =
+        TableColumn<Socio,LocalDate> colFechaIngreso =
                 new TableColumn<>("Fecha Ingreso");
 
 
-        TableColumn<Socio, String> colEstado =
+        TableColumn<Socio,String> colEstado =
                 new TableColumn<>("Estado");
+
+
+
 
 
 
@@ -313,51 +441,99 @@ public class MainView extends BorderPane {
 
 
 
+
+
+
         tablaSocios.getColumns().addAll(
 
                 colId,
+
                 colDni,
+
                 colNombres,
+
                 colApellidos,
+
                 colFechaNacimiento,
+
                 colSexo,
+
                 colTelefono,
+
                 colDireccion,
+
                 colComunidad,
+
                 colFechaIngreso,
+
                 colEstado
 
         );
 
 
+
     }
 
 
 
 
 
+
+
+
     // ==========================
-    // CARGAR DATOS EN TABLA
+    // CARGAR DATOS
     // ==========================
 
-    public void mostrarDatosSocios(List<Socio> socios) {
+
+    public void mostrarDatosSocios(List<Socio> socios){
+
+
+
+        tablaSocios.getItems().clear();
+
 
 
         tablaSocios.setItems(
+
                 FXCollections.observableArrayList(socios)
+
         );
+
+
 
     }
 
 
 
 
+
+
+
+
+    public Socio getSocioSeleccionado(){
+
+
+        return tablaSocios.getSelectionModel()
+
+                .getSelectedItem();
+
+
+    }
+
+
+
+
+
+
+
+
     // ==========================
-    // GETTERS PARA CONTROLLER
+    // GETTERS
     // ==========================
 
 
-    public Button getBtnInicio() {
+    public Button getBtnInicio(){
 
         return btnInicio;
 
@@ -365,7 +541,7 @@ public class MainView extends BorderPane {
 
 
 
-    public Button getBtnSocios() {
+    public Button getBtnSocios(){
 
         return btnSocios;
 
@@ -373,10 +549,36 @@ public class MainView extends BorderPane {
 
 
 
-    public Button getBtnNuevoSocio() {
+    public Button getBtnNuevoSocio(){
 
         return btnNuevoSocio;
 
     }
+
+
+
+    public Button getBtnActualizar(){
+
+        return btnActualizar;
+
+    }
+
+
+
+    public Button getBtnEliminar(){
+
+        return btnEliminar;
+
+    }
+
+
+
+    public TableView<Socio> getTablaSocios(){
+
+        return tablaSocios;
+
+    }
+
+
 
 }
